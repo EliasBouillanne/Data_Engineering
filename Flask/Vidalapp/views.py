@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template
 from . import config
+from . import database
 
 app = Flask(__name__)
 
@@ -8,15 +9,12 @@ app.config.from_object(config)
 
 @app.route('/')
 def home():
-    medicaments = db["medicament_items"]
+    mongo = database.MongoDB()
+    collection_medicaments = mongo.db['medicament_items']
+    medicaments = collection_medicaments.find()
     return (
-        medicaments, '/n'
+        str(medicaments[0]), '/n'
     )
-
-@app.route('/')
-def accueil():
-    mots = [""]
-    return render_template('accueil.html', titre="Bienvenue !", mots=mots)
 
 @app.route('/test', methods=['GET', 'POST'])
 def test():
