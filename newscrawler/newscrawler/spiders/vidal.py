@@ -16,7 +16,8 @@ class VidalSpider(scrapy.Spider):
 
     def parse(self, response):
 
-        letter_link = [response.urljoin(url)
+        letter_link = [
+            response.urljoin(url)
             for url in response.xpath("//ul[@class='menu_index']").css("a::attr(href)").extract()
             ]
 
@@ -43,8 +44,8 @@ class VidalSpider(scrapy.Spider):
         indication = response.xpath("//div[@itemprop='Indication']//text()").extract()
 
         yield SubstanceItem(
-            Nom_Substance = nom,
-            Lien_Substance = lien,
-            Fiche = fiche,
-            Indication = indication
+            nom_substance = nom,
+            lien_substance = lien,
+            fiche = fiche,
+            indication = indication
             )

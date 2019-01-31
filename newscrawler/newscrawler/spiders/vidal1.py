@@ -46,6 +46,6 @@ class Vidal1Spider(scrapy.Spider):
             )]
 
         yield SubstanceItem_med(
-            Nom_Substance = nom,
-            Liste_Medicament = medicament
+            nom_substance = nom,
+            liste_medicament = medicament
             )

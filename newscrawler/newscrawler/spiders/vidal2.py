@@ -44,9 +44,9 @@ class Vidal2Spider(scrapy.Spider):
         descriptif = response.xpath("//div[@class='mono_content']//div[@class='package_description']//text()").extract()
 
         yield MedicamentItem(
-            Nom_Medicament = nom,
-            Lien_Medicament = lien,
-            Substance = substance,
-            ActiveIngredient = activeIngredient,
-            Descriptif = descriptif
+            nom_medicament = nom,
+            lien_medicament = lien,
+            substance = substance,
+            activeIngredient = activeIngredient,
+            descriptif = descriptif
             )

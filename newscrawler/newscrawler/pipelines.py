@@ -20,12 +20,12 @@ class MongoPipeline(object):
         self.client.close()
 
     def process_item(self, item, spider):
-        if "Nom_Substance" in item:
-            nom = "Nom_Substance"
-            self.collection_name = 'Substance_Items'
-        elif "Nom_Medicament" in item:
-            nom = "Nom_Medicament"
-            self.collection_name = 'Medicament_Items'
+        if "nom_substance" in item:
+            nom = "nom_substance"
+            self.collection_name = 'substance_items'
+        elif "nom_medicament" in item:
+            nom = "nom_medicament"
+            self.collection_name = 'medicament_Items'
         else:
             DropItem("Item non valide pour importation dans DB" % item)
 
@@ -42,11 +42,11 @@ class TextPipeline_substance(object):
 
     def process_item(self, item, spider):
         try:
-            item['Fiche'] = clean(item['Fiche'])
-            item['Indication'] = clean(item['Indication'])
+            item['fiche'] = clean(item['fiche'])
+            item['indication'] = clean(item['indication'])
             return item
         except:
-            DropItem("Missing Fiche/Indication in %s" % item)
+            DropItem("Missing fiche/indication in %s" % item)
 
 class TextPipeline_medicament(object):
 
@@ -55,19 +55,19 @@ class TextPipeline_medicament(object):
             DropItem("Item non valide pour transformation" % item)
         else :
             try :
-                del item['Substance'][0]
-                item['Substance'] = [i for i in item['Substance'] if i.rstrip() != '']
+                del item['substance'][0]
+                item['substance'] = [i for i in item['substance'] if i.rstrip() != '']
 
-                del item['Descriptif'][0]
-                item['Descriptif'] = check_cip(item['Descriptif'])
-                item['Descriptif'] = [clean(i) for i in item['Descriptif']]
-                item['Descriptif'] = str_sup('Non agréé aux Collectivités', item['Descriptif'])
-                item['Descriptif'] = str_sup('Supprimé', item['Descriptif'])
-                item['Descriptif'] = str_in('Agréé aux Collectivités', item['Descriptif'])
-                item['Descriptif'] = str_in('Commercialisé', item['Descriptif'])
-                item['Descriptif'] = str_in('Modèle hospitalier', item['Descriptif'])
-                item['Descriptif'] = check_remboursement(item['Descriptif'])
-                item['Descriptif'] = list_to_dict(item['Descriptif'])
+                del item['descriptif'][0]
+                item['descriptif'] = check_cip(item['descriptif'])
+                item['descriptif'] = [clean(i) for i in item['descriptif']]
+                item['descriptif'] = str_sup('non agréé aux collectivités', item['descriptif'])
+                item['descriptif'] = str_sup('supprimé', item['descriptif'])
+                item['descriptif'] = str_in('agréé aux collectivités', item['descriptif'])
+                item['descriptif'] = str_in('commercialisé', item['descriptif'])
+                item['descriptif'] = str_in('modèle hospitalier', item['descriptif'])
+                item['descriptif'] = check_remboursement(item['descriptif'])
+                item['descriptif'] = list_to_dict(item['descriptif'])
                 return item
             except:
                 DropItem("Item non valide pour transformation" % item)
@@ -81,7 +81,7 @@ class TextPipeline_jai_mal(object):
             item['comment_med'] = clean_med(item['comment_plus_med'])
             return item
         except:
-            DropItem("Missing Fiche/Indication in %s" % item)
+            DropItem("Missing fiche/indication in %s" % item)
 
 
 def clean(string_):
@@ -96,7 +96,7 @@ def str_in(string, liste):
     a=0
     for i in range(len(liste)):
         if liste[i].find(string) != -1:
-            liste[i] = liste[i] + ':oui'
+            liste[i] = liste[i].lower() + ':oui'
             a=1
     if a==0:
         liste.append(string + ':non')
@@ -119,9 +119,10 @@ def check_remboursement(liste):
     a=0
     for i in range(len(liste)):
         if 'Remboursement' in liste[i]:
+            liste.replace('Remboursement', 'remboursement')
             a=1
     if a==0:
-        liste.append('Remboursement:NC')
+        liste.append('remboursement:nc')
     return liste
 
 def check_cip(liste):
@@ -142,7 +143,7 @@ def list_to_dict(liste):
         d[s[0].strip().replace(' ','_')] = s[1].strip()
     return d
 
-def clean__med(liste):
+def clean_med(liste):
     for i in liste:
         while i[0:1] != "<h":
             i = i.split('<h2')[1]
