@@ -25,7 +25,7 @@ class MongoPipeline(object):
             self.collection_name = 'substance_items'
         elif "nom_medicament" in item:
             nom = "nom_medicament"
-            self.collection_name = 'medicament_Items'
+            self.collection_name = 'medicament_items'
         else:
             DropItem("Item non valide pour importation dans DB" % item)
 
