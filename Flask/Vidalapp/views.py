@@ -7,8 +7,15 @@ app = Flask(__name__)
 app.config.from_object(config)
 
 @app.route('/')
+def home():
+    medicaments = db["medicament_items"]
+    return (
+        medicaments, '/n'
+    )
+
+@app.route('/')
 def accueil():
-    mots = ["bonjour", "à", "toi,", "visiteur."]
+    mots = [""]
     return render_template('accueil.html', titre="Bienvenue !", mots=mots)
 
 @app.route('/test', methods=['GET', 'POST'])
