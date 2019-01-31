@@ -1,4 +1,4 @@
-from .views import app
+#from .views import app
 import logging as lg
 
 from pymongo import MongoClient
@@ -9,7 +9,7 @@ from elasticsearch.helpers import bulk
 class MongoDB():
     def __init__(self):
         self.client = MongoClient()
-        self.db = client['Vidal']
+        self.db = self.client['Vidal']
 
 class ElasticsearchDB():
     LOCAL = True
