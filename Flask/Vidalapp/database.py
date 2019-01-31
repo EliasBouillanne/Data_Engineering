@@ -21,18 +21,19 @@ class ElasticsearchDB():
 
     def index_mongo(self, index):
         cursor = list(self.mongo.db[index].find())
+        actions = list()
         for item in cursor:
             _id = str(item['_id'])
             del item['_id']
-            document = {
+            action = {
                 "_index" : index,
                 "_type"  : index+"_document",
                 "_id"    : _id,
                 "_source": item
             }
-            yield document
+            actions.append(action)
 
-    def querry(self)
+
 
 def init_db():
     elastic = ElasticsearchDB()
