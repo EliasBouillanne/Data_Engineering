@@ -1,6 +1,3 @@
-#from .views import app
-import logging as lg
-
 from pymongo import MongoClient
 
 from elasticsearch import Elasticsearch
@@ -12,15 +9,15 @@ class MongoDB():
         self.db = self.client['Vidal']
 
 class ElasticsearchDB():
-    LOCAL = True
     def __init__(self):
         self.mongo = MongoDB()
-        self.client = Elasticsearch(hosts=["localhost" if LOCAL else "elasticsearch"])
-        bulk(self.client, self.index_mongo('substance_items'))
-        #bulk(self.client, self.index_mongo('Medicament_Items'))
+        self.client = Elasticsearch()
+        bulk(self.client, self.index_mongo('substance_items'), request_timeout=30)
+        bulk(self.client, self.index_mongo('medicament_items'), request_timeout=30)
 
     def index_mongo(self, index):
         cursor = list(self.mongo.db[index].find())
+        print(len(cursor))
         for item in cursor:
             _id = str(item['_id'])
             del item['_id']
@@ -32,7 +29,4 @@ class ElasticsearchDB():
             }
             yield document
 
-    def querry(self)
-
-def init_db():
-    elastic = ElasticsearchDB()
+elastic = ElasticsearchDB()

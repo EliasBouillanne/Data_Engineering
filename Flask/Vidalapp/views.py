@@ -8,6 +8,11 @@ app = Flask(__name__)
 app.config.from_object(config)
 
 @app.route('/')
+def accueil():
+    
+    return render_template('accueil.html')
+
+@app.route('/1')
 def home():
     mongo = database.MongoDB()
     collection_medicaments = mongo.db['medicament_items']
