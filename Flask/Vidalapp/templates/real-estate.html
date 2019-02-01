@@ -22,7 +22,11 @@
         <div class="row">
             <div class="medium-7 large-6 columns">
                 <h1>Know what your drugs are made of.</h1>
-                <p class="subheader">There is beauty in space, and it is orderly. There is no weather, and there is regularity. It is predictable. Everything in space obeys the laws of physics. If you know these laws, and obey them, space will treat you kindly.</p>
+                <p class="subheader">This web application is kind like a dictionnary of drugs. You can know exactly what your drugs are made of, from the substance(s) to the excipients.
+                    It refers to "Vidal" but this is easier to use. Make the experience ! 
+                </p>
+                <p class="subheader">You can find two examples from the "Vidal" below, one for a substance and another for a drug. 
+                </p>
                 <a href="https://www.vidal.fr/substances/19314/artemether/" target="_blank">
                     <button class="button">Artemether</button>
                 </a>
@@ -40,8 +44,8 @@
                                 </label>
                             </div>
                             <div class="small-12 columns">
-                                <label>Maximum number of active ingredients
-                                    <input type="number" min="0" max="15" value="3" placeholder="Number required">
+                                <label>Maximum number of excipients
+                                    <input type="number" min="0" max="50" value="0" placeholder="Number required">
                                 </label>
                                 <button type="submit" class="button">Search Now</button>
                             </div>
@@ -49,6 +53,23 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="row column">
+                <hr>
+            </div>
+
+            <div class="row column">
+                <p class="lead">Substance</p>
+            </div>
+            <div class="row small-up-1 medium-up-2 large-up-3">
+                <div class="column">
+                    <div class="callout"> 
+                        <p class="lead">{{ substance_items.nom_substance }}</p   
+                        <p class="subheader">{{substance_items.fiche}}</p>
+                    </div>
+                </div>
+            </div>
+
             <div class="row column">
                 <hr>
             </div>
@@ -116,14 +137,11 @@
             </div>
             
             
-            <div class="row column">
-                <a class="button hollow expanded">Load More</a>
-            </div>
             <footer>
                 <div class="row expanded callout secondary">
     
                     <div class="small-6 large-3 columns">
-                        <p class="lead">Thanks for support</p>
+                        <p class="lead">Thanks for supporting.</p>
                     </div>
                 </div>
                         
