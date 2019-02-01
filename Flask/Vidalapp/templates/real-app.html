@@ -39,13 +39,13 @@
                     <form>
                         <div class="row">
                             <div class="small-12 columns">
-                                <label>Enter substance
-                                    <input type="text" placeholder="Search substance">
+                                <label>Substance
+                                    <input type="text" placeholder="Enter substance">
                                 </label>
                             </div>
                             <div class="small-12 columns">
-                                <label>Maximum number of excipients
-                                    <input type="number" min="0" max="50" value="0" placeholder="Number required">
+                                <label>Excipient to prohibit
+                                    <input type="text" placeholder="Enter ingredient">
                                 </label>
                                 <button type="submit" class="button">Search Now</button>
                             </div>
@@ -63,9 +63,11 @@
             </div>
             <div class="row small-up-1 medium-up-2 large-up-3">
                 <div class="column">
-                    <div class="callout"> 
-                        <p class="lead">{{ substance_items.nom_substance }}</p   
-                        <p class="subheader">{{substance_items.fiche}}</p>
+                    <div class="callout">
+                        {% for elt in substance %} 
+                        <p class="lead">{{ elt.nom_substance }}</p   
+                        <p class="subheader">{{elt.fiche}}</p>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -83,57 +85,11 @@
                         <div class="callout">
                             <p class="lead">{{ elt.nom_medicament }}</p>
                             <p class="activeIngredient"</p>
-                            <div class="descriptif">
-                                <p class="CIP">{{elt.Cip}}</p>
-                                <p class="modalités_de_conservation">{{elt.modalités_de_conservation}}</p>
-                                <p class="remboursement">{{elt.remboursement}}</p>
-                                <p class="commercialisé">{{elt.commercialisé}}</p>
+                            <p class="descriptif">{{ elt.descriptif }}</p>
                             </div>
                         </div>
                     </div>
                 {% endfor %}
-
-                
-                <div class="column">
-                    <div class="callout">
-                        <p>Pegasi B</p>
-                        <p><img src="https://placehold.it/400x370&text=Pegasi B" alt="image of a planet called Pegasi B"></p>
-                        <p class="lead">Copernican Revolution caused an uproar</p>
-                        <p class="subheader">Find Earth-like planets life outside the Solar System</p>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="callout">
-                        <p>Pegasi B</p>
-                        <p><img src="https://placehold.it/400x370&text=Pegasi B" alt="image of a planet called Pegasi B"></p>
-                        <p class="lead">Copernican Revolution caused an uproar</p>
-                        <p class="subheader">Find Earth-like planets life outside the Solar System</p>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="callout">
-                        <p>Pegasi B</p>
-                        <p><img src="https://placehold.it/400x370&text=Pegasi B" alt="image of a planet called Pegasi B"></p>
-                        <p class="lead">Copernican Revolution caused an uproar</p>
-                        <p class="subheader">Find Earth-like planets life outside the Solar System</p>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="callout">
-                        <p>Pegasi B</p>
-                        <p><img src="https://placehold.it/400x370&text=Pegasi B" alt="image of a planet called Pegasi B"></p>
-                        <p class="lead">Copernican Revolution caused an uproar</p>
-                        <p class="subheader">Find Earth-like planets life outside the Solar System</p>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="callout">
-                        <p>Pegasi B</p>
-                        <p><img src="https://placehold.it/400x370&text=Pegasi B" alt="image of a planet called Pegasi B"></p>
-                        <p class="lead">Copernican Revolution caused an uproar</p>
-                        <p class="subheader">Find Earth-like planets life outside the Solar System</p>
-                    </div>
-                </div>
             </div>
             
             
