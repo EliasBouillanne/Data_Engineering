@@ -1,6 +1,3 @@
-#from .views import app
-import logging as lg
-
 from pymongo import MongoClient
 
 from elasticsearch import Elasticsearch
@@ -11,26 +8,35 @@ class MongoDB():
         self.client = MongoClient()
         self.db = self.client['Vidal']
 
+    def find(self, collection):
+        return self.db[collection].find()
+
+    def collection(self):
+        return self.db.list_collection_names()
+
 class ElasticsearchDB():
-    LOCAL = True
     def __init__(self):
         self.mongo = MongoDB()
-        self.client = Elasticsearch(hosts=["localhost" if LOCAL else "elasticsearch"])
-        bulk(self.client, self.index_mongo('substance_items'))
-        #bulk(self.client, self.index_mongo('Medicament_Items'))
+        self.client = Elasticsearch()
 
-    def index_mongo(self, index):
-        cursor = list(self.mongo.db[index].find())
+    def index_bulk(self):
+        for collection in self.mongo.collection():
+            bulk(client=self.client, actions=self.index_mongo(collection))
+
+    def index_mongo(self, collection):
+        cursor = self.mongo.find(collection)
         for item in cursor:
             _id = str(item['_id'])
             del item['_id']
-            document = {
-                "_index" : index,
-                "_type"  : index+"_document",
+            action = {
+                '_op_type': 'index',
+                "_index" : collection,
+                "_type"  : collection+"_document",
                 "_id"    : _id,
                 "_source": item
             }
-            yield document
+            yield action
 
 def init_db():
     elastic = ElasticsearchDB()
+    elastic.index_bulk()

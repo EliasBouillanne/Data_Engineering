@@ -40,13 +40,13 @@ class Vidal2Spider(scrapy.Spider):
         nom = response.meta.get('nom')
         lien = response.meta.get('lien')
         substance = response.xpath("//div[@class='mono_content']//div[@class='compositionTable']//text()").extract()
-        activeIngredient = response.xpath("//div[@class='mono_content']//span[@itemprop='activeIngredient']//text()").extract()
+        excipient = response.xpath("//div[@class='mono_content']//span[@itemprop='activeIngredient']//text()").extract()
         descriptif = response.xpath("//div[@class='mono_content']//div[@class='package_description']//text()").extract()
 
         yield MedicamentItem(
             nom_medicament = nom,
             lien_medicament = lien,
             substance = substance,
-            activeIngredient = activeIngredient,
+            excipient = excipient,
             descriptif = descriptif
             )

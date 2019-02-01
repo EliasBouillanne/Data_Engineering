@@ -54,24 +54,24 @@ class TextPipeline_medicament(object):
         if type(item) == 'NoneType':
             DropItem("Item non valide pour transformation" % item)
         else :
-            #try :
-            del item['substance'][0]
-            item['substance'] = [i for i in item['substance'] if i.rstrip() != '']
+            try :
+                del item['substance'][0]
+                item['substance'] = [i for i in item['substance'] if i.rstrip() != '']
 
-            del item['descriptif'][0]
-            item['descriptif'] = lower(set(item['descriptif']))
-            item['descriptif'] = check_cip(item['descriptif'])
-            item['descriptif'] = [clean(i) for i in item['descriptif']]
-            item['descriptif'] = str_sup('non agréé aux collectivités', item['descriptif'])
-            item['descriptif'] = str_sup('supprimé', item['descriptif'])
-            item['descriptif'] = str_in('agréé aux collectivités', item['descriptif'])
-            item['descriptif'] = str_in('commercialisé', item['descriptif'])
-            item['descriptif'] = str_in('modèle hospitalier', item['descriptif'])
-            item['descriptif'] = check_remboursement(item['descriptif'])
-            item['descriptif'] = list_to_dict(item['descriptif'])
-            return item
-            #except:
-            #    DropItem("Item non valide pour transformation" % item)
+                del item['descriptif'][0]
+                item['descriptif'] = lower(list(set(item['descriptif'])))
+                item['descriptif'] = check_cip(item['descriptif'])
+                item['descriptif'] = [clean(i) for i in item['descriptif']]
+                item['descriptif'] = str_sup('non agréé aux collectivités', item['descriptif'])
+                item['descriptif'] = str_sup('supprimé', item['descriptif'])
+                item['descriptif'] = str_in('agréé aux collectivités', item['descriptif'])
+                item['descriptif'] = str_in('commercialisé', item['descriptif'])
+                item['descriptif'] = str_in('modèle hospitalier', item['descriptif'])
+                item['descriptif'] = check_remboursement(item['descriptif'])
+                item['descriptif'] = list_to_dict(item['descriptif'])
+                return item
+            except:
+                DropItem("Item non valide pour transformation" % item)
 
 
 class TextPipeline_jai_mal(object):
@@ -130,19 +130,24 @@ def check_remboursement(liste):
 
 def check_cip(liste):
     index_to_r =  list()
+    cip = str()
     for index, i in enumerate(liste):
         try:
-            liste[0] = liste[0] + str(int(i))
+            cip += str(int(i))
             index_to_r.append(index)
         except:
-            pass
-    return list(np.delete(np.array(liste), index_to_r))
-
+            continue
+    liste = list(np.delete(np.array(liste), index_to_r))
+    for index, i in enumerate(liste):
+        if i[0:3]=="cip":
+            liste[index] += cip
+            return liste
+    liste.append("cip:{}".format(cip))
+    return liste
 
 def list_to_dict(liste):
     d = dict()
-    if '' in liste:
-        liste.remove('')
+    [liste.remove(i) for i in liste if len(i)==0]
     for i in liste:
         s = i.split(':', maxsplit=1)
         d[s[0].strip().replace(' ','_')] = s[1].strip()
