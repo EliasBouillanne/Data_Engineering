@@ -27,7 +27,7 @@ class MedicamentItem(scrapy.Item):
     nom_medicament = scrapy.Field()
     lien_medicament = scrapy.Field()
     substance = scrapy.Field()
-    activeIngredient = scrapy.Field()
+    excipient = scrapy.Field()
     descriptif = scrapy.Field()
 
     def __str__(self):
