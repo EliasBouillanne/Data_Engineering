@@ -1053,7 +1053,7 @@ button {
 		margin-left: 33.33333%
 	}
 	.large-6 {
-		width: 50%
+		width: 70%
 	}
 	.large-push-6 {
 		position: relative;
@@ -1626,7 +1626,7 @@ p+.stat {
 	border: 1px solid transparent;
 	border-radius: 0;
 	padding: .85em 1em;
-	margin: 0 1rem 1rem 0;
+	margin: 1rem 3rem 1rem 0;
 	font-size: .9rem;
 	background: #800909;
 	color: #fff

@@ -51,7 +51,7 @@ class ElasticsearchDB():
         })
 
         result = self.client.search(index="substance_items", body=query)
-        return result
+        return result['hits']['hits']
 
     def search_inmedicament(self, substance, excipient=False):
         if excipient==False:
@@ -79,7 +79,7 @@ class ElasticsearchDB():
             })
 
         result = self.client.search(index="medicament_items", body=query)
-        return result
+        return result['hits']['hits']
 
 
     def format_results(self, result, content):
