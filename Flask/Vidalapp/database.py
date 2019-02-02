@@ -2,6 +2,7 @@ from pymongo import MongoClient
 
 from elasticsearch import Elasticsearch
 from elasticsearch.helpers import bulk
+import json
 
 class MongoDB():
     def __init__(self):
@@ -36,6 +37,42 @@ class ElasticsearchDB():
                 "_source": item
             }
             yield action
+
+    def search_inmedicament(self, substance, excipient=False):
+        if excipient==False:
+            query = json.dumps({
+              "query": {
+                "bool" : {
+                  "must_not" : {
+                          "term" : { "excipient" : excipient }
+                  }
+              }
+            }
+            })
+        else:
+            query = json.dumps({
+              "query": {
+                "bool" : {
+                  "must_not" : {
+                          "term" : { "excipient" : excipient }
+                  },
+                  "must_not": {
+                        "term": { "substance": substance }}
+                 }
+              }
+            })
+
+        result = client.search(index="medicament_items", body=query)
+        return result
+
+
+    def format_results(self, result, content):
+        """Print results nicely:
+        doc_id) content
+        """
+        data = [doc for doc in result['hits']['hits']]
+        for doc in data:
+            print("%s" % (doc['_source'][content]))
 
 def init_db():
     elastic = ElasticsearchDB()
