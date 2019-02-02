@@ -11,8 +11,10 @@ app.config.from_object(config)
 @app.route('/', methods=['GET','POST'])
 def accueil():
     if request.method == 'POST':
-        sub = request.form['substance'].lower()
-        exc = request.form['excipient'].lower()
+        sub = request.form.get("substance").lower()
+        exc = request.form.get("excipient").lower()
+        if exc=="":
+            exc=False
         substance  = elastic.search_insubstance(sub)
         medicament = elastic.search_inmedicament(sub, exc)
         return render_template('real-app.html', substance = substance, medicament = medicament)

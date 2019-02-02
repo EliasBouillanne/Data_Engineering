@@ -27,8 +27,8 @@
                 </p>
                 <p class="subheader">You can find two examples from the "Vidal" below, one for a substance and another for a drug.
                 </p>
-                <a href="https://www.vidal.fr/substances/19314/artemether/" target="_blank">
-                    <button class="button">Artemether</button>
+                <a href="https://www.vidal.fr/substances/18415/abacavir/" target="_blank">
+                    <button class="button">Abacavir</button>
                 </a>
                 <a href="https://www.vidal.fr/Medicament/bactox_500_mg_gel-1841.htm" target="_blank">
                     <button class="button">Bactox</button>
@@ -37,23 +37,24 @@
             <div class="medium-5 large-3 columns">
                 <div class="callout secondary">
                     <div>
-                        <form action="{{ url_for('accueil') }}" method="post" class="row">
+                        <div class="row">
                             <div class="small-12 columns">
                                 <label>Substance
-                                    <input type="text" placeholder="Enter substance" name="substance">
+                                    <form action="{{ url_for('accueil') }}" method="post">
+                                        <input type="text" placeholder="Enter substance" name="substance">
                                 </label>
                             </div>
                             <div class="small-12 columns">
                                 <label>Excipient to prohibit
-                                    <input type="text" placeholder="Enter ingredient" name"excipient">
+                                    <form action="{{ url_for('accueil') }}" method="post">
+                                        <input type="text" placeholder="Enter ingredient" name="excipient">
                                 </label>
                                 <button type="submit" class="button">Search Now</button>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
-
             <div class="row column">
                 <hr>
             </div>
@@ -65,8 +66,8 @@
                 <div class="column">
                     <div class="callout">
                         {% for elt in substance %}
-                        <p class="lead">{{ elt.nom_substance }}</p
-                        <p class="subheader">{{elt.fiche}}</p>
+                        <p class="lead">{{ elt.nom_substance }}</p>
+                        <p class="subheader">{{ elt.fiche }}</p>
                         {% endfor %}
                     </div>
                 </div>
@@ -80,7 +81,7 @@
                 <p class="lead">Drugs</p>
             </div>
             <div class="row small-up-1 medium-up-2 large-up-3">
-                {% for elt in medicament %}
+                {% for elt in data %}
                     <div class="column">
                         <div class="callout">
                             <p class="lead">{{ elt.nom_medicament }}</p>
@@ -92,6 +93,18 @@
                 {% endfor %}
             </div>
 
+
+            <footer>
+                <div class="row expanded callout secondary">
+
+                    <div class="small-6 large-3 columns">
+                        <p class="lead">Thanks for supporting.</p>
+                    </div>
+                </div>
+
+
+            </footer>
+            <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
             <script>
             $(document).foundation();
         </script>

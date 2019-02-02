@@ -38,14 +38,29 @@ class ElasticsearchDB():
             }
             yield action
 
+    def search_insubstance(self, substance):
+        query = json.dumps({
+          "query": {
+            "bool" : {
+              "must" : [
+                  {
+                "term" : { "nom_substance" : substance }},
+              ]
+          }
+        }
+        })
+
+        result = self.client.search(index="substance_items", body=query)
+        return result
+
     def search_inmedicament(self, substance, excipient=False):
         if excipient==False:
             query = json.dumps({
               "query": {
                 "bool" : {
-                  "must_not" : {
-                          "term" : { "excipient" : excipient }
-                  }
+                    "should": [
+                      { "term": { "substance": substance } }
+                      ]
               }
             }
             })
@@ -56,13 +71,14 @@ class ElasticsearchDB():
                   "must_not" : {
                           "term" : { "excipient" : excipient }
                   },
-                  "must_not": {
-                        "term": { "substance": substance }}
+                  "should": [
+                    { "term": { "substance": substance } }
+                    ]
                  }
               }
             })
 
-        result = client.search(index="medicament_items", body=query)
+        result = self.client.search(index="medicament_items", body=query)
         return result
 
 
