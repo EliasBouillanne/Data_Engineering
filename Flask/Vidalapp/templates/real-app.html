@@ -66,9 +66,9 @@
                 <div class="column">
                     <div class="callout">
                         {% for elt in substance %}
-                        <p class="lead">{{ elt._source.nom_substance }}</p>
-                        <p class="subheader">{{ elt._source.fiche }}</p>
-                        <p class="subheader">{{ elt._source.indication }}</p>
+                        <p class="lead"> {{ elt._source.nom_substance }}</p>
+                        <p class="subheader"><B>Fiche :</B> {{ elt._source.fiche }}</p>
+                        <p class="subheader"><B>Indication :</B> {{ elt._source.indication }}</p>
                         {% endfor %}
                     </div>
                 </div>
@@ -89,10 +89,10 @@
                     <div class="callout">
                         <p class="lead">{{ elt._source.nom_medicament }}</p>
                         <div class="subheader">
-                            <p> CIP :{{ elt._source.descriptif.cip }}</p>
-                            <p> Modalités_de_conservation : {{ elt._source.descriptif.modalités_de_conservation }}</p>
-                            <p> Remboursement : {{ elt._source.descriptif.remboursement }}</p>
-                            <p> ommercialisé : {{ elt._source.descriptif.commercialisé }}</p>
+                            <p> <B>CIP :</B> {{ elt._source.descriptif.cip }}</p>
+                            <p> <B>Modalités_de_conservation :</B> {{ elt._source.descriptif.modalités_de_conservation }}</p>
+                            <p> <B>Remboursement :</B> {{ elt._source.descriptif.remboursement }}</p>
+                            <p> <B>ommercialisé :</B> {{ elt._source.descriptif.commercialisé }}</p>
 
                         </div>
                     </div>
