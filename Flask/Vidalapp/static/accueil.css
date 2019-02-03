@@ -1267,15 +1267,12 @@ ul {
 	padding: 0
 }
 
-dl,
-ol,
-p,
-ul {
-	margin-bottom: 1rem
-}
-
 p {
 	font-size: inherit
+}
+
+p.menu-text {
+	font-size: 3.3rem
 }
 
 h1,
@@ -1334,7 +1331,7 @@ h6 {
 
 @media screen and (min-width:40em) {
 	h1 {
-		font-size: 3rem
+		font-size: 2.8rem
 	}
 	h2 {
 		font-size: 2.5rem
@@ -2889,17 +2886,25 @@ screen and (min-width:75em) {
 [data-whatinput=mouse] .menu>li {
 	outline: 0
 }
+.menu-nom{
+	margin-top: .8rem;
+	text-align: center;
+}
 
-.menu>li>a {
-	display: block;
+#left, #right {
+	display: inline-block;
 	padding: .7rem 1rem;
 	line-height: 1
 }
 
 .menu a,
 .menu button,
-.menu input {
-	margin-bottom: 0
+
+
+a.menu-nom{
+	display: block;
+	padding: .7rem 1rem;
+	line-height: 1
 }
 
 .menu>li>a>i,

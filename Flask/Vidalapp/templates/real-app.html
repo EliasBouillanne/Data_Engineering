@@ -8,20 +8,20 @@
 
     <body>
 
-        <div class="top-bar" id="realEstateMenu">
-            <div class="top-bar">
-                <ul class="menu" data-responsive-menu="accordion">
-                    <li class="menu-text">Data Engineering</li>
-                    <li><a href="https://fr.linkedin.com/in/marine-dussaussois-0159bb155">Dussaussois Marine</a></li>
-                    <li><a href="https://fr.linkedin.com/in/elias-bouillanne">Bouillanne Elias</a></li>
-                </ul>
-            </div>
+        <div class="top-bar">
+            <ul class="menu" data-responsive-menu="accordion">
+                <p align=middle class="menu-text">Data Engineering</p>
+            </ul>
+            <ul class="menu-nom" data-responsive-menu="accordion">
+                <a id="left" href="https://fr.linkedin.com/in/marine-dussaussois-0159bb155">Dussaussois Marine</a>
+                <a id="right" href="https://fr.linkedin.com/in/elias-bouillanne">Bouillanne Elias</a>
+            </ul>
         </div>
 
         <br>
         <div class="row">
             <div class="medium-7 large-6 columns">
-                <h1>Know what your drugs are made of.</h1>
+                <h1>Know what your drugs are made of !</h1>
                 <p class="subheader">This web application is kind like a dictionnary of drugs. You can know exactly what your drugs are made of, from the substance(s) to the excipients.
                     It refers to "Vidal" but this is easier to use. Make the experience !
                 </p>
@@ -62,17 +62,18 @@
             <div class="row column">
                 <p class="lead">Substance</p>
             </div>
+
+            {% for elt in substance %}
             <div class="row small-up-1 medium-up-2 large-up-1">
                 <div class="column">
                     <div class="callout">
-                        {% for elt in substance %}
                         <p class="lead"> {{ elt._source.nom_substance }}</p>
                         <p class="subheader"><B>Fiche :</B> {{ elt._source.fiche }}</p>
                         <p class="subheader"><B>Indication :</B> {{ elt._source.indication }}</p>
-                        {% endfor %}
                     </div>
                 </div>
             </div>
+            {% endfor %}
 
             <div class="row column">
                 <hr>
@@ -92,7 +93,7 @@
                             <p> <B>CIP :</B> {{ elt._source.descriptif.cip }}</p>
                             <p> <B>Modalités_de_conservation :</B> {{ elt._source.descriptif.modalités_de_conservation }}</p>
                             <p> <B>Remboursement :</B> {{ elt._source.descriptif.remboursement }}</p>
-                            <p> <B>ommercialisé :</B> {{ elt._source.descriptif.commercialisé }}</p>
+                            <p> <B>Commercialisé :</B> {{ elt._source.descriptif.commercialisé }}</p>
 
                         </div>
                     </div>
