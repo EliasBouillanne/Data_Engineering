@@ -13,8 +13,8 @@
                 <p align=middle class="menu-text">Data Engineering</p>
             </ul>
             <ul class="menu-nom" data-responsive-menu="accordion">
-                <a id="left" href="https://fr.linkedin.com/in/marine-dussaussois-0159bb155">Dussaussois Marine</a>
-                <a id="right" href="https://fr.linkedin.com/in/elias-bouillanne">Bouillanne Elias</a>
+                <a id="left" href="https://fr.linkedin.com/in/marine-dussaussois-0159bb155" target="_blank">Dussaussois Marine</a>
+                <a id="right" href="https://fr.linkedin.com/in/elias-bouillanne" target="_blank">Bouillanne Elias</a>
             </ul>
         </div>
 
@@ -60,14 +60,14 @@
             </div>
 
             <div class="row column">
-                <p class="lead">Substance</p>
+                <p class="lead" align=middle>Substance</p>
             </div>
 
             {% for elt in substance %}
             <div class="row small-up-1 medium-up-2 large-up-1">
                 <div class="column">
                     <div class="callout">
-                        <p class="lead"> {{ elt._source.nom_substance }}</p>
+                        <p class="lead1"> {{ elt._source.nom_substance|capitalize }}</p>
                         <p class="subheader"><B>Fiche :</B> {{ elt._source.fiche }}</p>
                         <p class="subheader"><B>Indication :</B> {{ elt._source.indication }}</p>
                     </div>
@@ -80,7 +80,7 @@
             </div>
 
             <div class="row column">
-                <p class="lead">Drugs</p>
+                <p class="lead" align=middle>Drugs</p>
             </div>
 
             {% for row in medicament %}
@@ -88,12 +88,13 @@
                 {% for elt in row %}
                 <div class="column">
                     <div class="callout">
-                        <p class="lead">{{ elt._source.nom_medicament }}</p>
-                        <div class="subheader">
+                        <p class="lead1">{{ elt._source.nom_medicament }}</p>
+                        <div class="subheader1">
                             <p> <B>CIP :</B> {{ elt._source.descriptif.cip }}</p>
                             <p> <B>Modalités_de_conservation :</B> {{ elt._source.descriptif.modalités_de_conservation }}</p>
                             <p> <B>Remboursement :</B> {{ elt._source.descriptif.remboursement }}</p>
                             <p> <B>Commercialisé :</B> {{ elt._source.descriptif.commercialisé }}</p>
+                            <p> <B>Substance :</B> {{ elt._source.substance|join(', ') }}</p>
 
                         </div>
                     </div>
