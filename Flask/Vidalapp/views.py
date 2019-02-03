@@ -1,9 +1,9 @@
 from flask import Flask, request, render_template
 from . import config
-from . import database
+from . import utils
 
 app = Flask(__name__)
-elastic = database.ElasticsearchDB()
+elastic = utils.ElasticsearchDB()
 
 # Config options - Make sure you created a 'config.py' file.
 app.config.from_object(config)
@@ -16,7 +16,8 @@ def accueil():
         if exc=="":
             exc=False
         substance  = elastic.search_insubstance(sub)
-        medicament = elastic.search_inmedicament(sub, exc)
+        medicament = utils.reshape_to_3_columns(elastic.search_inmedicament(sub, exc))
+
         return render_template('real-app.html', substance = substance, medicament = medicament)
 
     return render_template('real-app.html')
