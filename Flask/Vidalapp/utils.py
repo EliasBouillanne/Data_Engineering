@@ -90,6 +90,21 @@ class ElasticsearchDB():
         for doc in data:
             print("%s" % (doc['_source'][content]))
 
+def reshape_to_3_columns(_list):
+    list_out = list()
+    row = 0
+    i = 0
+    while i < len(_list):
+        list_out.append([_list[i]])
+        i += 1
+        count = 0
+        while i < len(_list) and count < 2:
+            list_out[row].append([_list[i]])
+            i += 1
+            count += 1
+        row += 1
+    return list_out
+
 def init_db():
     elastic = ElasticsearchDB()
     elastic.index_bulk()
