@@ -1,132 +1,82 @@
-<span class="c20 c22">Know what your drugs are made of.</span>
+Know what your drugs are made of.
 
-* * *
+Ce projet a été réalisé dans le cadre de l’unité DSIA-4203C qui s’intègre dans
+le cursus de la filière Datascience et Intelligence Artificielle.
 
-<span class="c8"></span>
+Le but est de scraper des données depuis un site choisi puis de les restituer
+dans une web application. Le site choisi dans ce projet est :
+<https://www.vidal.fr> . Nous avons ainsi récolter des informations sur plus de
+14 000 médicaments et plus de 1700 substances différentes.
 
-<span class="c1"></span>
+How to run the app ?
 
-<span class="c1">Ce projet a été réalisé dans le cadre de l’unité DSIA-4203C qui s’intègre dans le cursus de la filière Datascience et Intelligence Artificielle.</span>
+*Etape 1 : Récupérer les scripts depuis github*
 
-<span class="c5">Le but est de scraper des données depuis un site choisi puis de les restituer dans une web application. Le site choisi dans ce projet est :</span> <span class="c3">[https://www.vidal.fr](https://www.google.com/url?q=https://www.vidal.fr&sa=D&ust=1549232120554000)</span>
+Cloner le projet grâce à :
 
-<span class="c1"></span>
+\$ git clone https://github.com/YayaBou/Data_Engineering.git
 
-<span class="c22 c20"></span>
+*Etape 2 : Récupérer la base de données*
 
-<span class="c20">How to run the app ?</span>
+Se rendre à l’endroit où MongoDB est installé. Par exemple :
 
-* * *
+cd C:\\Program Files\\MongoDB\\Server\\4.0\\bin
 
-<span class="c1"></span>
+Exécuter les commandes suivantes :
 
-<span class="c5 c10 c25"></span>
+mongorestore -d [your_db_name] [your_dump_dir]
 
-<span class="c11 c5 c10">Etape 1</span> <span class="c4">: Récupérer les scripts depuis github</span>
+Ici, la base de données est “Vidal” et le chemin d’accès est de la forme :
+C:\\Users\\Documents\\Data_Engineering\\Vidal
 
-<span class="c4"></span>
+(la base de données se trouve dans le sous-dossier *Vidal* du dossier principal
+*Data_Engineering*.
 
-<span class="c5">Cloner le projet grâce à :</span>
+*Etape 3 : Ouvrir elasticsearch*
 
-<span class="c1"></span>
+Se rendre à l’emplacement où Elasticsearch a été installé. Dans le dossier .bin,
+ouvrir le fichier *elasticsearch.bat*. Un terminal s’ouvre, le laisser tourner
+en arrière plan et ne pas le fermer.
 
-<span class="c23">$ git clone https://github.com/YayaBou/Data_Engineering.git</span>
+*Etape 4 : Exécution du programme principal*
 
-<span class="c1"></span>
+Exécuter le script *run.py* qui se trouve dans le dossier *Flask* :
 
-<span class="c5 c10 c11">Etape 2</span> <span class="c4">: Récupérer la base de données</span>
+python run.py
 
-<span class="c4"></span>
+User Guide
 
-<span class="c1">Se rendre à l’endroit où MongoDB est installé. Par exemple :</span>
+Lorsque l’on se rend à l’adresse indiquée, nous arrivons sur l’unique page de
+notre application web. En dessous de l’introduction se trouve deux exemples
+types de pages de page que l’on a scrappé depuis le site officiel du Vidal.
+*Abacavir* est un exemple de substance, *Bactox* est un exemple de médicaments
+contenant la substance *Amoxicilline*.
 
-<span class="c0"></span>
+![](media/cadd4716461aa435369fc4d44c88a5dc.png)
 
-<span class="c17">cd C:\Program Files\MongoDB\Server\4.0\bin</span>
+Vous pouvez ensuite faire vous-même vos recherche dans le carré gris en haut à
+droite. Entrez par exemple une substance bien connue, le *Paracétamol*. Une
+description de la substance s’affichera, ainsi que la liste des médicaments
+contenant cette dernière.
 
-<span class="c4"></span>
+Vous pouvez ensuite affiner votre recherche en supprimant par exemple les
+médicaments contenant du *sodium benzoate* parmi les excipients.
 
-<span class="c1">Exécuter les commandes suivantes :</span>
+Reference Guide
 
-<span class="c0"></span>
+L’application *Know what your drugs are made of* a été réalisé grâce à :
 
-<span class="c26">mongorestore -d [your_db_name] [your_dump_dir]</span>
+-   Scrapy, permet de récupérer les données depuis le site web.
 
-<span class="c1">Ici, la base de données est “Vidal” et le chemin d’accès est de la forme : C:\Users\Documents\Data_Engineering\Vidal</span>
+-   MongoDB, permet de stocker les données dans une database grâce au NoSQL.
 
-<span class="c5">(la base de données se trouve dans le sous-dossier</span> <span class="c5 c10">Vidal</span><span class="c5">du dossier principal</span> <span class="c5 c10">Data_Engineering</span><span class="c1">.</span>
+-   Elasticsearch, outils de recherche rapide dans la database.
 
-<span class="c0"></span>
+-   Flask, framework de développement web en Python.
 
-<span class="c11 c5 c10">Etape 3</span> <span class="c4">: Ouvrir elasticsearch</span>
+Pour toute question relative à la réalisation ou à l’exécution du projet, ne pas
+hésiter à contacter :
 
-<span class="c0"></span>
+<elias.bouillanne@edu.esiee.fr>
 
-<span class="c5">Se rendre à l’emplacement où Elasticsearch a été installé. Dans le dossier .bin, ouvrir le fichier</span> <span class="c5 c10">elasticsearch.bat</span><span class="c1">. Un terminal s’ouvre, le laisser tourner en arrière plan et ne pas le fermer.</span>
-
-<span class="c0"></span>
-
-<span class="c11 c5 c10">Etape 4</span> <span class="c4">: Exécution du programme principal</span>
-
-<span class="c4"></span>
-
-<span class="c5">Exécuter le script</span> <span class="c5 c10">run.py</span><span class="c5"> qui se trouve dans le dossier</span><span class="c5 c10">Flask</span> <span class="c1">:</span>
-
-<span class="c1"></span>
-
-<span class="c17">python run.py</span>
-
-<span class="c7">User Guide</span>
-
-* * *
-
-<span class="c7"></span>
-
-<span class="c1"></span>
-
-<span class="c5">Lorsque l’on se rend à l’adresse indiquée, nous arrivons sur l’unique page de notre application web. En dessous de l’introduction se trouve deux exemples types de pages de page que l’on a scrappé depuis le site officiel du Vidal.</span> <span class="c5 c10">Abacavir</span> <span class="c5">est un exemple de substance,</span> <span class="c5 c10">Bactox</span> <span class="c5">est un exemple de médicaments contenant la substance</span> <span class="c5 c10">Amoxicilline</span><span class="c1">.</span>
-
-<span class="c8"></span>
-
-<span style="overflow: hidden; display: inline-block; margin: 0.00px -0.00px; border: 1.33px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 602.00px; height: 338.67px;">![](images/image1.png)</span>
-
-<span class="c1"></span>
-
-<span class="c5">Vous pouvez ensuite faire vous-même vos recherche dans le carré gris en haut à droite. Entrez par exemple une substance bien connue, le</span> <span class="c5 c10">Paracétamol</span><span class="c1">. Une description de la substance s’affichera, ainsi que la liste des médicaments contenant cette dernière.</span>
-
-<span class="c5">Vous pouvez ensuite affiner votre recherche en supprimant par exemple les médicaments contenant du</span> <span class="c5 c10">sodium benzoate</span><span class="c1"> parmi les excipients.</span>
-
-<span class="c1"></span>
-
-<span class="c1"></span>
-
-<span class="c7">Reference Guide</span>
-
-* * *
-
-<span class="c7"></span>
-
-<span class="c7"></span>
-
-<span class="c5">L’application</span> <span class="c5 c10">Know what your drugs are made of</span> <span class="c1">a été réalisé grâce à :</span>
-
-<span class="c1"></span>
-
-*   <span class="c9">Scrapy,</span> <span class="c1">permet de récupérer les données depuis le site web.</span>
-*   <span class="c9">MongoDB,</span> <span class="c1">permet de stocker les données dans une database grâce au NoSQL.</span>
-*   <span class="c9">Elasticsearch,</span> <span class="c1">outils de recherche rapide dans la database.</span>
-*   <span class="c9">Flask,</span> <span class="c1">framework de développement web en Python.</span>
-
-<span class="c1"></span>
-
-<span class="c1">Pour toute question relative à la réalisation ou à l’exécution du projet, ne pas hésiter à contacter :</span>
-
-<span class="c1"></span>
-
-<span class="c9 c14">[elias.bouillanne@edu.esiee.fr](mailto:elias.bouillanne@edu.esiee.fr)</span>
-
-<span class="c14 c9">[marine.dussaussois@edu.esiee.fr](mailto:marine.dussaussois@edu.esiee.fr)</span>
-
-<span class="c15 c9"></span>
-
-<span class="c8"></span>
+<marine.dussaussois@edu.esiee.fr>
