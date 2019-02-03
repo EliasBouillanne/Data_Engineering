@@ -81,20 +81,25 @@
             <div class="row column">
                 <p class="lead">Drugs</p>
             </div>
-            {% for elt in medicament %}
+
+            {% for row in medicament %}
             <div class="row small-up-1 medium-up-2 large-up-3">
+                {% for elt in row %}
                 <div class="column">
                     <div class="callout">
                         <p class="lead">{{ elt._source.nom_medicament }}</p>
-                        <p class="subheader">{{ elt._source.excipient }}</p>
-                        <p class="subheader">{{ elt._source.descriptif }}</p>
+                        <div class="subheader">
+                            <p> CIP :{{ elt._source.descriptif.cip }}</p>
+                            <p> Modalités_de_conservation : {{ elt._source.descriptif.modalités_de_conservation }}</p>
+                            <p> Remboursement : {{ elt._source.descriptif.remboursement }}</p>
+                            <p> ommercialisé : {{ elt._source.descriptif.commercialisé }}</p>
+
                         </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
             {% endfor %}
-
-
 
     </body>
     </html>
