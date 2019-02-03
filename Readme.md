@@ -1,4 +1,4 @@
-#Know what your drugs are made of.
+Know what your drugs are made of.
 
 Ce projet a été réalisé dans le cadre de l’unité DSIA-4203C qui s’intègre dans
 le cursus de la filière Datascience et Intelligence Artificielle.
@@ -8,7 +8,7 @@ dans une web application. Le site choisi dans ce projet est :
 <https://www.vidal.fr> . Nous avons ainsi récolter des informations sur plus de
 14 000 médicaments et plus de 1700 substances différentes.
 
-##How to run the app ?
+How to run the app ?
 
 *Etape 1 : Récupérer les scripts depuis github*
 
