@@ -5,4 +5,4 @@ from . import utils
 
 @app.cli.command()
 def init_db():
-    database.init_db()
+    utils.init_db()
