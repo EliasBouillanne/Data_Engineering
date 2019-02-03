@@ -99,7 +99,7 @@ def reshape_to_3_columns(_list):
         i += 1
         count = 0
         while i < len(_list) and count < 2:
-            list_out[row].append([_list[i]])
+            list_out[row].append(_list[i])
             i += 1
             count += 1
         row += 1
