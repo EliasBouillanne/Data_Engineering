@@ -6,7 +6,8 @@ le cursus de la filière Datascience et Intelligence Artificielle.
 Le but est de scraper des données depuis un site choisi puis de les restituer
 dans une web application. Le site choisi dans ce projet est :
 <https://www.vidal.fr> . Nous avons ainsi récolter des informations sur plus de
-14 000 médicaments et plus de 1700 substances différentes.
+14 000 médicaments et plus de 1700 substances différentes. Cette application
+s'adresse en particulier aux pharmaciens.
 
 How to run the app ?
 
