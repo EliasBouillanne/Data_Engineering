@@ -41,9 +41,11 @@ en arrière plan et ne pas le fermer.
 
 *Etape 4 : Exécution du programme principal*
 
-Exécuter le script *run.py* qui se trouve dans le dossier *Flask* :
+Se placer dans le dossier cloner "data_engineering/Flask" puis exécuter la commande suivante:
+  - sur mac/linux "export FLASK_APP=run.py && flask initdb"
+  - sur windows "set FLASK_APP=run.py && flask initdb"
 
-python run.py
+Enfin, lancez l'application en exécutant la commande : "flask run"
 
 User Guide
 
